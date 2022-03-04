@@ -1,0 +1,106 @@
+<br />
+<div class="container">
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button class="btn btn-outline-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onVoidCustomerForm()">
+      <i class="fa-solid fa-user-plus"></i>            
+    </button>
+  </div>
+
+    <table class="table table-hover">
+      <thead>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Gender</th>
+        <th></th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of customers">
+              <td>{{ item.customerId }}</td>
+              <td>{{ item.firstname }}</td>
+              <td>{{ item.lastname }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.phonenumber }}</td>            
+              <td>
+                  <span class="badge bg-primary" *ngIf="item.gender">Male</span>
+                  <span class="badge bg-primary" *ngIf="!item.gender">Female</span>
+              </td>
+              <td>
+                  <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onGetCustomer(item.customerId)">
+                      <i class="fa-solid fa-user-pen"></i>
+                  </button>
+                  &nbsp;
+                  <button class="btn btn-outline-danger btn-sm" (click)="onDeleteCustomer(item.customerId)">
+                      <i class="fa-solid fa-user-xmark"></i>
+                  </button>
+              </td>
+          </tr>
+          <tr *ngIf="!customers">
+              <td colspan="12">No records</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+
+<!-- Modal Utilities -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen  modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h4 class="modal-title text-white" id="staticBackdropLabel">{{ fullname }}</h4>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <h3 class="text-center">Client Information</h3><hr />
+            <form [formGroup]="customerFormGroup">
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" formControlName="firstname" placeholder="" value="" required="">
+                  </div>
+      
+                  <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastname" placeholder="" value="" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="you@example.com">
+                  </div>
+      
+                  <div class="col-12">
+                    <label for="phonenumber" class="form-label">Phone Number</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                      <input type="tel" class="form-control" id="phonenumber" formControlName="phonenumber" placeholder="Phone Number" required="">
+                    </div>
+                  </div>
+                        
+                  <div class="col-md-4">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" formControlName="gender" required="">
+                      <option value="">Choose...</option>
+                      <option [value]="true">Male</option>
+                      <option [value]="false">Female</option>
+                    </select>
+                  </div>
+                </div><br />
+
+                <button class="w-100 btn btn-success btn-lg" (click)="onPostPutClient()">Save</button>
+            </form><br /><br />
+  
+            <div *ngIf="detail">
+              <app-adresses [Customers]="detail"></app-adresses>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
