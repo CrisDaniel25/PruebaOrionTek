@@ -44,7 +44,7 @@ export class CustomersComponent implements OnInit {
     this.service.getCustomerbyId(id).subscribe(response => {
       this.detail = response;
       this.fullname = this.detail.firstname + ' ' + this.detail.lastname;
-      this.customerFormGroup.setValue(this.detail);      
+      this.customerFormGroup.patchValue(this.detail);
     });
   }
 
