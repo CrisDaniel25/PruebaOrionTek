@@ -1,5 +1,7 @@
 # Prueba Técnica Desarrollador de Software - OrionTek
 
+> **Portfolio demo:** the `portfolio-demo` branch adds a Vercel-ready, in-memory API mode with fictional data. Demo writes are temporary and no production credentials are included.
+
 Se desea tener el control de todos los clientes pertenecientes a la empresa X, donde cada cliente puede tener N cantidad de direcciones. Con sus conocimientos de desarrollo se solicita crear una solución informática para este problema.
 
 npm start para el proyecto de Node js
