@@ -2,8 +2,9 @@ const variables = require('../../config.json');
 const config = variables.DATABASE;
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(config.DATABASE, config.USER, config.PASSWORD, {
-  host: config.HOST,
+const sequelize = new Sequelize(process.env.DB_NAME || config.DATABASE, process.env.DB_USER || config.USER, process.env.DB_PASSWORD || config.PASSWORD, {
+  host: process.env.DB_HOST || config.HOST,
+  port: process.env.DB_PORT || 3306,
   dialect: config.DIALECT,
   operatorsAliases: false,
   pool: {
