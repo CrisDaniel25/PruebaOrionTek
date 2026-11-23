@@ -50,7 +50,9 @@ export class CustomersComponent implements OnInit {
 
   onVoidCustomerForm() {
     this.isEditable = false;
-    this.customerFormGroup.reset;
+    this.detail = null;
+    this.fullname = 'Nuevo cliente';
+    this.customerFormGroup.reset();
   }
 
   onPostPutClient() {
@@ -100,7 +102,7 @@ export class CustomersComponent implements OnInit {
               'Removed!',
               'You have successfully removed the client.',
               'success'
-            )
+            ).then(() => this.onGetCustomers())
           });
       }
     })
