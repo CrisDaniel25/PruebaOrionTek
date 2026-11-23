@@ -1,19 +1,24 @@
 <br />
 <div class="container">
+  <div class="demo-hero mb-4">
+    <span class="eyebrow">FULL-STACK CASE STUDY</span>
+    <h1>Gestión de clientes y direcciones</h1>
+    <p>Explora un CRUD completo con relación uno-a-muchos. Puedes crear, editar y eliminar registros; la información se restablece periódicamente.</p>
+  </div>
   <div class="d-flex flex-row-reverse bd-highlight">
     <button class="btn btn-outline-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onVoidCustomerForm()">
-      <i class="fa-solid fa-user-plus"></i>            
+      + Nuevo cliente
     </button>
   </div>
 
     <table class="table table-hover">
       <thead>
         <th>#</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
         <th>Email</th>
-        <th>Phone Number</th>
-        <th>Gender</th>
+        <th>Teléfono</th>
+        <th>Género</th>
         <th></th>
       </thead>
       <tbody>
@@ -24,16 +29,16 @@
               <td>{{ item.email }}</td>
               <td>{{ item.phonenumber }}</td>            
               <td>
-                  <span class="badge bg-primary" *ngIf="item.gender">Male</span>
-                  <span class="badge bg-primary" *ngIf="!item.gender">Female</span>
+                  <span class="badge bg-primary" *ngIf="item.gender">Masculino</span>
+                  <span class="badge bg-primary" *ngIf="!item.gender">Femenino</span>
               </td>
               <td>
                   <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onGetCustomer(item.customerId)">
-                      <i class="fa-solid fa-user-pen"></i>
+                      Editar
                   </button>
                   &nbsp;
                   <button class="btn btn-outline-danger btn-sm" (click)="onDeleteCustomer(item.customerId)">
-                      <i class="fa-solid fa-user-xmark"></i>
+                      Eliminar
                   </button>
               </td>
           </tr>
@@ -52,12 +57,12 @@
         <div class="modal-header bg-dark">
           <h4 class="modal-title text-white" id="staticBackdropLabel">{{ fullname }}</h4>
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-            <i class="fa-solid fa-x"></i>
+            Cerrar
           </button>
         </div>
         <div class="modal-body">
           <div class="container">
-            <h3 class="text-center">Client Information</h3><hr />
+            <h3 class="text-center">Información del cliente</h3><hr />
             <form [formGroup]="customerFormGroup">
                 <div class="row g-3">
                   <div class="col-sm-6">
@@ -78,7 +83,7 @@
                   <div class="col-12">
                     <label for="phonenumber" class="form-label">Phone Number</label>
                     <div class="input-group has-validation">
-                      <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                      <span class="input-group-text">Tel.</span>
                       <input type="tel" class="form-control" id="phonenumber" formControlName="phonenumber" placeholder="Phone Number" required="">
                     </div>
                   </div>
@@ -93,7 +98,7 @@
                   </div>
                 </div><br />
 
-                <button class="w-100 btn btn-success btn-lg" (click)="onPostPutClient()">Save</button>
+                <button class="w-100 btn btn-success btn-lg" (click)="onPostPutClient()">Guardar</button>
             </form><br /><br />
   
             <div *ngIf="detail">
