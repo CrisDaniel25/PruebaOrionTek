@@ -1,11 +1,12 @@
 const http = require("http");
 const app = require("./server/app");
-const server = http.createServer(app);
+const port = process.env.PORT || 3030;
 
-const { PORT } = process.env;
-const port = process.env.PORT || PORT;
+if (process.env.VERCEL !== "1") {
+  const server = http.createServer(app);
+  server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
 
-// server listening 
-server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+module.exports = app;
