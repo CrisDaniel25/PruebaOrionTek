@@ -51,7 +51,7 @@ export class AdressesComponent implements OnInit {
           title: 'Your work has been saved',
           showConfirmButton: false,
           timer: 3500
-        }).then(x => window.location.reload());
+        }).then(() => this.Customers.addresses.push(response));
         console.log(response);
       });
     }
@@ -63,7 +63,7 @@ export class AdressesComponent implements OnInit {
           title: 'Your work has been updated',
           showConfirmButton: false,
           timer: 3500
-        });
+        }).then(() => Object.assign(this.Customers.addresses.find((item: any) => item.addressId === this.UpdateIdAdress), response));
         console.log(response);        
       })
     }
@@ -87,7 +87,7 @@ export class AdressesComponent implements OnInit {
               'Removed!',
               'You have successfully removed the adress.',
               'success'
-            )
+            ).then(() => this.Customers.addresses = this.Customers.addresses.filter((item: any) => item.addressId !== id))
           });
       }
     })
